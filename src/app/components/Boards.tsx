@@ -38,13 +38,7 @@ import {
 } from "@/components/ui/table";
 import { fetchBoardData, fetchPrompts } from "@/lib/query";
 import { useQuery } from "@tanstack/react-query";
-
-interface Board {
-  id: number;
-  name: string;
-  createdAt: string;
-  bcfs: any;
-}
+import { BcfBoard, Bcf, Board } from "./interface/interface";
 
 export default function Boards() {
   const { data } = useQuery({
@@ -220,7 +214,7 @@ export default function Boards() {
             <CardContent>
               <Table>
                 <TableBody>
-                  {data?.boards?.map((board: any) => (
+                  {data?.boards?.map((board: Board) => (
                     <div key={board?.id}>
                       <TableRow>
                         <TableCell>
@@ -232,7 +226,7 @@ export default function Boards() {
                             {board?.createdAt}
                           </Badge>
                         </TableCell>
-                        {board?.bcfs?.map((bcf: any) => (
+                        {board?.bcfs?.map((bcf: Bcf) => (
                           <TableRow key={bcf?.id}>
                             <TableCell>
                               <div className="font-medium">{bcf?.id}</div>
@@ -243,7 +237,7 @@ export default function Boards() {
                                 {bcf?.createdAt}
                               </Badge>
                             </TableCell>
-                            {bcf.bcfBoards?.map((bcfBoard: any) => (
+                            {bcf.bcfBoards?.map((bcfBoard: BcfBoard) => (
                               <TableRow key={bcfBoard?.id}>
                                 <TableCell>
                                   <div className="font-medium">
